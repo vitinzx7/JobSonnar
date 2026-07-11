@@ -22,7 +22,7 @@ public class JobController {
     }
 
     @GetMapping(value = "/jobs")
-    public List<JobResponseDto> getJobs(@RequestParam String jobName) {
-        return jobService.searchJobs(jobName);
+    public List<JobResponseDto> getJobs(@RequestParam String query) {
+        return jobService.searchJobs(query);
     }
 }

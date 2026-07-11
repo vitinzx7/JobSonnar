@@ -17,25 +17,16 @@ public class JobResponseDto {
     public String getName() {
         return name;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
+
     public String getCity() {
         return city;
     }
-    public void setCity(String city) {
-        this.city = city;
-    }
+
     public String getJobUrl() {
         return jobUrl;
     }
-    public void setJobUrl(String jobUrl) {
-        this.jobUrl = jobUrl;
-    }
+
     public String getPublishedDate() {
         return publishedDate;
-    }
-    public void setPublishedDate(String publishedDate) {
-        this.publishedDate = publishedDate;
     }
 }

@@ -14,12 +14,12 @@ import java.util.List;
 @Service
 public class JobService {
 
-    public List<JobResponseDto> searchJobs(String jobName) {
+    public List<JobResponseDto> searchJobs(String query) {
 
         RestClient client = RestClient.create();
 
 		JobResponse response = client.get()
-				.uri("https://employability-portal.gupy.io/api/v1/jobs?jobName=" + URLEncoder.encode(jobName, StandardCharsets.UTF_8))
+				.uri("https://employability-portal.gupy.io/api/v1/jobs?jobName=" + URLEncoder.encode(query, StandardCharsets.UTF_8))
 				.retrieve()
 				.body(JobResponse.class);
 
