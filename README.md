@@ -43,6 +43,7 @@ JobSonnar/
 ├── frontend/                         # Aplicação React
 │   ├── public/                       # Arquivos públicos e favicon
 │   └── src/
+>>>> main
 │       ├── App.jsx                   # Busca, estados e renderização das vagas
 │       ├── App.css                   # Estilos dos componentes da página
 │       ├── index.css                 # Estilos globais
@@ -69,7 +70,7 @@ JobSonnar/
 ### Pré-requisitos
 
 - Java 21
-- Node.js 20.19+ ou 22.12+
+
 - Uma chave válida da API Jooble
 
 ### Backend
