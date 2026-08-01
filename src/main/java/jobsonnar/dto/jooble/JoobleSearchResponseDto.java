@@ -1,4 +1,4 @@
-package com.project.jobsonnar.dto.jooble;
+package jobsonnar.dto.jooble;
 
 import java.util.List;
 

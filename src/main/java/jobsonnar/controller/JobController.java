@@ -1,4 +1,4 @@
-package com.project.jobsonnar.controller;
+package jobsonnar.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
-import com.project.jobsonnar.dto.JobResponseDto;
-import com.project.jobsonnar.service.JobService;
+import jobsonnar.dto.JobResponseDto;
+import jobsonnar.service.JobService;
 
 
 @RestController

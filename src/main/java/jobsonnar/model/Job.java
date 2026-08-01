@@ -1,4 +1,4 @@
-package com.project.jobsonnar.model;
+package jobsonnar.model;
 
 public class Job {
     private Long id;

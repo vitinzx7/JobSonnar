@@ -1,14 +1,14 @@
-package com.project.jobsonnar.service;
+package jobsonnar.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
-import com.project.jobsonnar.JobResponse;
-import com.project.jobsonnar.dto.JobResponseDto;
-import com.project.jobsonnar.model.Job;
-import com.project.jobsonnar.provider.JoobleJobProvider;
-
+import jobsonnar.JobResponse;
+import jobsonnar.dto.JobResponseDto;
+import jobsonnar.model.Job;
+import jobsonnar.provider.JoobleJobProvider;
 import java.net.URLEncoder;
+
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;

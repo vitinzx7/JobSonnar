@@ -1,12 +1,12 @@
-package com.project.jobsonnar;
+package jobsonnar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import com.project.jobsonnar.model.Job;
-import com.project.jobsonnar.service.JobService;
+import jobsonnar.model.Job;
+import jobsonnar.service.JobService;
 import org.junit.jupiter.api.Test;
 
 class JobSonnarApplicationTests {
