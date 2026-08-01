@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+frontend/node_modules/
+frontend/dist/
+.env
+.env.*
+!.env.example
+
+.history/
+.lh/
+
+# Local AI learning tools
+.agents/
+.claude/
+skills-lock.json
