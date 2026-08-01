@@ -1,8 +1,8 @@
-package com.project.jobsonnar;
+package jobsonnar;
 
 import java.util.List;
 
-import com.project.jobsonnar.model.Job;
+import jobsonnar.model.Job;
 
 public class JobResponse {
 

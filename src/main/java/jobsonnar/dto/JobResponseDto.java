@@ -1,4 +1,4 @@
-package com.project.jobsonnar.dto;
+package jobsonnar.dto;
 
 public class JobResponseDto {
     private String name;

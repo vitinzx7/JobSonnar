@@ -1,4 +1,4 @@
-package com.project.jobsonnar.provider;
+package jobsonnar.provider;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -6,10 +6,10 @@ import org.springframework.web.client.RestClient;
 
 import java.util.List;
 
-import com.project.jobsonnar.dto.jooble.JoobleSearchResponseDto;
-import com.project.jobsonnar.dto.JobResponseDto;
-import com.project.jobsonnar.dto.jooble.JoobleJobDto;
-import com.project.jobsonnar.dto.jooble.JoobleSearchRequestDto;
+import jobsonnar.dto.jooble.JoobleSearchResponseDto;
+import jobsonnar.dto.JobResponseDto;
+import jobsonnar.dto.jooble.JoobleJobDto;
+import jobsonnar.dto.jooble.JoobleSearchRequestDto;
 
 @Component
 public class JoobleJobProvider {

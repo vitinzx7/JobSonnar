@@ -1,4 +1,4 @@
-package com.project.jobsonnar;
+package jobsonnar;
 
 
 import org.springframework.boot.SpringApplication;
