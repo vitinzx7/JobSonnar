@@ -48,6 +48,19 @@
   font-weight: 700;
 }
 
+.search-options {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.search-provider {
+  min-width: 220px;
+  margin-left: auto;
+}
+
 .search-toggle input {
   width: 18px;
   height: 18px;
@@ -239,6 +252,28 @@
   color: var(--text-muted);
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.job-card .job-main {
+  min-width: 0;
+}
+
+.job-card .job-company {
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.job-card .job-source {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
 }
 
 .job-link {
