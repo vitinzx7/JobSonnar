@@ -17,6 +17,10 @@ public class JoobleJobProvider implements JobProvider {
     private final String apiKey;
     private final RestClient restClient;
 
+    @Override
+    public String providerName() {
+        return "jooble";
+    }
 
     public JoobleJobProvider(@Value("${jooble.api.key}") String apiKey, RestClient.Builder restClientBuilder) {
         this.apiKey = apiKey;
@@ -41,7 +45,8 @@ public class JoobleJobProvider implements JobProvider {
                 job.getTitle(),
                 job.getLocation(),
                 job.getLink(),
-                job.getUpdated()
+                job.getUpdated(),
+                job.getCompany()
         );
     }
 

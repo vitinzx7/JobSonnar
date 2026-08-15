@@ -16,6 +16,11 @@ import jobsonnar.model.Job;
 public class GupyJobProvider implements JobProvider {
     private final RestClient restClient;
 
+    @Override
+    public String providerName() {
+        return "gupy";
+    }
+
     public GupyJobProvider(RestClient.Builder restClienteBuilder) {
 
         this.restClient = restClienteBuilder
@@ -28,7 +33,8 @@ public class GupyJobProvider implements JobProvider {
                 job.getName(),
                 job.getCity(),
                 job.getJobUrl(),
-                job.getPublishedDate()
+                job.getPublishedDate(),
+                job.getCompany()
         );
     }
 

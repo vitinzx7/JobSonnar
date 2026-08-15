@@ -28,7 +28,8 @@ public class JobController {
     public List<JobResponseDto> getJobs(
             @RequestParam String query,
             @RequestParam(required = false) String location,
-            @RequestParam(required = false) Integer radiusKm) {
-        return jobService.searchJobs(new JobSearchRequest(query, location, radiusKm));
+            @RequestParam(required = false) Integer radiusKm,
+            @RequestParam(required = false) String provider) {
+        return jobService.searchJobs(new JobSearchRequest(query, location, radiusKm), provider);
     }
 }

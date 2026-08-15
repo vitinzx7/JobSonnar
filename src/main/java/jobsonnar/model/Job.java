@@ -16,6 +16,9 @@ public class Job {
     @JsonAlias({"published_date", "publishedDate", "created_at", "createdAt", "updated_at", "updatedAt"})
     private String publishedDate;
 
+    @JsonAlias({"careerPageName", "company_name", "company", "employer_name"})
+    private String company;
+
 
     public Long getId() {
         return id;
@@ -52,6 +55,12 @@ public class Job {
     }
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
+    }
+    public String getCompany() {
+        return company;
+    }
+    public void setCompany(String company) {
+        this.company = company;
     }
 
 

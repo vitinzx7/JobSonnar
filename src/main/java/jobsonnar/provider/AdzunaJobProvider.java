@@ -17,6 +17,11 @@ public class AdzunaJobProvider implements JobProvider {
     private final String appKey;
     private final RestClient restClient;
 
+    @Override
+    public String providerName() {
+        return "adzuna";
+    }
+
     public AdzunaJobProvider(
             @Value("${adzuna.app.id:}") String appId,
             @Value("${adzuna.app.key:}") String appKey,
@@ -56,11 +61,13 @@ public class AdzunaJobProvider implements JobProvider {
 
     private JobResponseDto toJobResponseDto(AdzunaJobDto job) {
         String city = job.getLocation() == null ? null : job.getLocation().getDisplayName();
+        String company = job.getCompany() == null ? null : job.getCompany().getDisplayName();
         return new JobResponseDto(
                 job.getTitle(),
                 city,
                 job.getRedirectUrl(),
-                job.getCreated()
+                job.getCreated(),
+                company
         );
     }
 
