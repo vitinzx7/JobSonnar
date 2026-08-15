@@ -9,10 +9,11 @@ import org.springframework.web.client.RestClient;
 
 import jobsonnar.JobResponse;
 import jobsonnar.dto.JobResponseDto;
+import jobsonnar.dto.JobSearchRequest;
 import jobsonnar.model.Job;
 
 @Component
-public class GupyJobProvider {
+public class GupyJobProvider implements JobProvider {
     private final RestClient restClient;
 
     public GupyJobProvider(RestClient.Builder restClienteBuilder) {
@@ -22,7 +23,7 @@ public class GupyJobProvider {
         .build();
     }
 
-        private JobResponseDto toJobResponseDto(Job job) {
+    private JobResponseDto toJobResponseDto(Job job) {
         return new JobResponseDto(
                 job.getName(),
                 job.getCity(),
@@ -31,7 +32,14 @@ public class GupyJobProvider {
         );
     }
 
-    public List<JobResponseDto> searchJobs(String query) {
+    @Override
+    public List<JobResponseDto> searchJobs(JobSearchRequest request) {
+        String query = request.query();
+
+        if (query == null || query.isBlank()) {
+            return List.of();
+        }
+
         JobResponse response = restClient 
         .get()
         .uri("/api/v1/jobs?jobName=" + URLEncoder.encode(query, StandardCharsets.UTF_8))

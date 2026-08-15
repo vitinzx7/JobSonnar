@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 import jobsonnar.dto.JobResponseDto;
+import jobsonnar.dto.JobSearchRequest;
 import jobsonnar.service.JobService;
 
 
@@ -24,7 +25,10 @@ public class JobController {
 
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping(value = "/jobs")
-    public List<JobResponseDto> getJobs(@RequestParam String query) {
-        return jobService.searchJobs(query);
+    public List<JobResponseDto> getJobs(
+            @RequestParam String query,
+            @RequestParam(required = false) String location,
+            @RequestParam(required = false) Integer radiusKm) {
+        return jobService.searchJobs(new JobSearchRequest(query, location, radiusKm));
     }
 }

@@ -1,11 +1,19 @@
 package jobsonnar.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Job {
     private Long id;
     private String name;
     private String description;
     private String city;
+
+    @JsonAlias({"job_url", "url", "link", "applyUrl", "apply_url"})
     private String jobUrl;
+
+    @JsonAlias({"published_date", "publishedDate", "created_at", "createdAt", "updated_at", "updatedAt"})
     private String publishedDate;
 
 
