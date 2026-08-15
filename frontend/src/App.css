@@ -6,9 +6,9 @@
 
 .search-section {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
-  gap: 32px;
-  align-items: end;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
   padding: 32px;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -39,16 +39,71 @@
   gap: 10px;
 }
 
-.search-label {
+.search-toggle {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
   color: var(--text-strong);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
+}
+
+.search-options {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.search-provider {
+  min-width: 220px;
+  margin-left: auto;
+}
+
+.search-toggle input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
 }
 
 .search-controls {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  grid-template-areas: "query location button";
   gap: 10px;
+  align-items: end;
+}
+
+.search-field {
+  display: grid;
+  gap: 10px;
+}
+
+.search-field[for="job-query"] {
+  grid-area: query;
+}
+
+.search-field[for="job-location"] {
+  grid-area: location;
+}
+
+.search-field--compact {
+  grid-area: radius;
+}
+
+.search-button {
+  grid-area: button;
+}
+
+.search-field--compact .search-input {
+  text-align: center;
+}
+
+.search-label {
+  color: var(--text-strong);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .search-input,
@@ -98,6 +153,12 @@
   outline-offset: 2px;
 }
 
+.search-hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
 .results-section {
   margin-top: 32px;
 }
@@ -116,6 +177,12 @@
   color: var(--text-muted);
   font-size: 0.9rem;
   white-space: nowrap;
+}
+
+.results-context {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
 }
 
 .empty-state {
@@ -187,6 +254,28 @@
   line-height: 1.5;
 }
 
+.job-card .job-main {
+  min-width: 0;
+}
+
+.job-card .job-company {
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.job-card .job-source {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
 .job-link {
   display: inline-flex;
   min-height: 40px;
@@ -226,13 +315,16 @@
     padding: 24px 0;
   }
 
-  .search-section {
-    grid-template-columns: 1fr;
-    padding: 24px;
-  }
-
   .search-controls {
     grid-template-columns: 1fr;
+    grid-template-areas: none;
+  }
+
+  .search-field[for="job-query"],
+  .search-field[for="job-location"],
+  .search-field--compact,
+  .search-button {
+    grid-area: auto;
   }
 
   .results-header {

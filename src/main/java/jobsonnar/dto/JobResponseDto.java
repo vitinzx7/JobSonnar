@@ -5,13 +5,16 @@ public class JobResponseDto {
     private String city;
     private String jobUrl;
     private String publishedDate;
+    private String company;
+    private String source;
 
 
-    public JobResponseDto(String name, String city, String jobUrl, String publishedDate) {
+    public JobResponseDto(String name, String city, String jobUrl, String publishedDate, String company) {
             this.name = name;
             this.city = city;
             this.jobUrl = jobUrl;
             this.publishedDate = publishedDate;
+            this.company = company;
         }
 
     public String getName() {
@@ -37,5 +40,17 @@ public class JobResponseDto {
     }
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
+    }
+    public String getCompany() {
+        return company;
+    }
+    public void setCompany(String company) {
+        this.company = company;
+    }
+    public String getSource() {
+        return source;
+    }
+    public void setSource(String source) {
+        this.source = source;
     }
 }

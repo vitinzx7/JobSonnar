@@ -20,7 +20,8 @@ O JobSonnar centraliza essa primeira etapa: o usuário informa o cargo, o backen
 ## Funcionalidades atuais
 
 - Busca de vagas por cargo ou palavra-chave.
-- Resultados reunidos de duas fontes externas.
+- Resultados reunidos de três fontes externas.
+- Busca com foco em Brasília/DF e raio de 5 km como recorte inicial.
 - Resposta JSON simplificada com nome, cidade, data e link da vaga.
 - Exibição das vagas em cards responsivos.
 - Estados visuais de carregamento, erro, busca vazia e nenhum resultado.
@@ -72,13 +73,16 @@ JobSonnar/
 - Java 21
 
 - Uma chave válida da API Jooble
+- Credenciais da API Adzuna, se quiser habilitar essa fonte no ambiente local
 
 ### Backend
 
 Na raiz do projeto:
 
 ```bash
-export JOOBLE_API_KEY="sua_chave_aqui"
+set -a
+source .env
+set +a
 ./mvnw spring-boot:run
 ```
 
@@ -99,7 +103,7 @@ A interface ficará disponível em `http://localhost:5173`.
 ## API
 
 ```http
-GET /jobs?query=java
+GET /jobs?query=java&location=Bras%C3%ADlia%2FDF&radiusKm=5
 ```
 
 Exemplo do formato retornado:
@@ -120,21 +124,22 @@ Exemplo do formato retornado:
 - As APIs externas retornam estruturas diferentes. DTOs específicos transformam esses dados em um único formato para o frontend.
 - O retorno original possuía muitos campos desnecessários. O `JobResponseDto` limita a resposta ao que a interface realmente usa.
 - O frontend permite apenas links HTTPS dos domínios esperados e abre as vagas com proteção contra acesso à página de origem.
-- Segredos não são enviados ao navegador: a chave da API é lida pelo Spring a partir de `JOOBLE_API_KEY`.
+- Segredos não são enviados ao navegador: as chaves são lidas pelo Spring a partir de variáveis de ambiente.
+- A busca atual aceita cargo, localidade e raio, com Brasília/DF e 5 km como padrão inicial.
 
 ## Limitações atuais
 
 - A URL do backend e a origem permitida pelo CORS ainda estão configuradas para o ambiente local.
-- Uma falha em uma fonte externa ainda pode interromper toda a busca.
+- Uma falha em uma fonte externa não derruba a busca inteira; o backend devolve os resultados parciais das demais fontes.
 - As chamadas externas ainda não possuem timeout definido.
 - O endpoint ainda precisa de validação de entrada, cache e limitação de requisições.
+- O recorte de 5 km ainda é um primeiro passo baseado em localidade, sem geocodificação completa do ponto de origem.
 - O projeto ainda não salva buscas nem envia notificações.
 
 ## Próximos passos
 
-- [ ] Concluir a separação de cada fonte em seu próprio provider.
 - [ ] Preparar frontend e backend para deploy por variáveis de ambiente.
-- [ ] Manter resultados parciais quando uma fonte estiver indisponível.
+- [ ] Concluir a normalização geográfica completa do recorte de 5 km.
 - [ ] Adicionar validação, timeout, cache e rate limiting.
 - [ ] Salvar buscas e preferências no PostgreSQL.
 - [ ] Criar alertas automáticos de novas vagas por e-mail.

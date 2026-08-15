@@ -10,12 +10,17 @@ import jobsonnar.dto.jooble.JoobleSearchResponseDto;
 import jobsonnar.dto.JobResponseDto;
 import jobsonnar.dto.jooble.JoobleJobDto;
 import jobsonnar.dto.jooble.JoobleSearchRequestDto;
+import jobsonnar.dto.JobSearchRequest;
 
 @Component
-public class JoobleJobProvider {
+public class JoobleJobProvider implements JobProvider {
     private final String apiKey;
     private final RestClient restClient;
 
+    @Override
+    public String providerName() {
+        return "jooble";
+    }
 
     public JoobleJobProvider(@Value("${jooble.api.key}") String apiKey, RestClient.Builder restClientBuilder) {
         this.apiKey = apiKey;
@@ -24,15 +29,15 @@ public class JoobleJobProvider {
             .build();
     }
 
-    private JoobleSearchRequestDto buildJoobleSearchRequestDto(String query) {
-        JoobleSearchRequestDto request = new JoobleSearchRequestDto();
+    private JoobleSearchRequestDto buildJoobleSearchRequestDto(JobSearchRequest request) {
+        JoobleSearchRequestDto searchRequest = new JoobleSearchRequestDto();
 
-        request.setKeywords(query);
-        request.setLocation("Brazil");
-        request.setPage("1");
-        request.setResultOnPage("5");
+        searchRequest.setKeywords(request.query());
+        searchRequest.setLocation(request.location());
+        searchRequest.setPage("1");
+        searchRequest.setResultOnPage("5");
 
-        return request;
+        return searchRequest;
     }
 
     private JobResponseDto toJobResponseDto(JoobleJobDto job) {
@@ -40,15 +45,21 @@ public class JoobleJobProvider {
                 job.getTitle(),
                 job.getLocation(),
                 job.getLink(),
-                job.getUpdated()
+                job.getUpdated(),
+                job.getCompany()
         );
     }
 
 
-    public List<JobResponseDto> searchJobs(String query) {
-        JoobleSearchRequestDto request = buildJoobleSearchRequestDto(query);
+    @Override
+    public List<JobResponseDto> searchJobs(JobSearchRequest searchRequest) {
+        if (apiKey == null || apiKey.isBlank() || searchRequest.query() == null || searchRequest.query().isBlank()) {
+            return List.of();
+        }
 
-           JoobleSearchResponseDto response = restClient
+        JoobleSearchRequestDto request = buildJoobleSearchRequestDto(searchRequest);
+
+        JoobleSearchResponseDto response = restClient
 
             .post()
             .uri("/api/{apiKey}", apiKey)
@@ -56,8 +67,8 @@ public class JoobleJobProvider {
             .retrieve()
             .body(JoobleSearchResponseDto.class);
 
-         return toJobResponseDtos(response);
-    } 
+       return toJobResponseDtos(response);
+    }
 
     private List<JobResponseDto> toJobResponseDtos(JoobleSearchResponseDto response) {
         if (response == null || response.getJobs() == null) {

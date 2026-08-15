@@ -1,12 +1,23 @@
 package jobsonnar.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Job {
     private Long id;
     private String name;
     private String description;
     private String city;
+
+    @JsonAlias({"job_url", "url", "link", "applyUrl", "apply_url"})
     private String jobUrl;
+
+    @JsonAlias({"published_date", "publishedDate", "created_at", "createdAt", "updated_at", "updatedAt"})
     private String publishedDate;
+
+    @JsonAlias({"careerPageName", "company_name", "company", "employer_name"})
+    private String company;
 
 
     public Long getId() {
@@ -44,6 +55,12 @@ public class Job {
     }
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
+    }
+    public String getCompany() {
+        return company;
+    }
+    public void setCompany(String company) {
+        this.company = company;
     }
 
 
