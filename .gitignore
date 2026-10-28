@@ -40,6 +40,8 @@ frontend/dist/
 
 .history/
 .lh/
+data/
+application-monitor.yml
 
 # Local AI learning tools
 .agents/

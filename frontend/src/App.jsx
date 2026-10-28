@@ -1,5 +1,6 @@
 import './App.css'
 import { useState } from 'react';
+import Monitor from './Monitor'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8081'
 
@@ -83,6 +84,7 @@ function App() {
 
   return (
     <main className="app-shell">
+      <Monitor apiBaseUrl={API_BASE_URL} />
       <section className="search-section" aria-labelledby="page-title">
         <div className="brand-block">
           <p className="eyebrow">Job search radar</p>
