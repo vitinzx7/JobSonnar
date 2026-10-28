@@ -1,0 +1,16 @@
+# Copy to application-monitor.yml in the repository root.
+# Configure real public career pages and inspect their HTML before choosing selectors.
+monitor:
+  career-pages: []
+  # Example for a page that contains JSON-LD JobPosting objects with individual URLs:
+  # career-pages:
+  #   - name: Empresa
+  #     url: https://empresa.example/carreiras
+  # Example for a server-rendered HTML vacancy listing:
+  #   - name: Empresa
+  #     url: https://empresa.example/carreiras
+  #     item-selector: .vacancy-card
+  #     title-selector: h2
+  #     link-selector: a[href]
+  #     location-selector: .location
+  #     date-selector: time
